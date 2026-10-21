@@ -9,25 +9,15 @@ import org.testng.annotations.Test;
 
 import com.flipkart.pages.SearchPage;
 
-public class SearchTest 
-{
+public class SearchTest extends BaseTest {
 	
-	WebDriver driver;
-	WebDriverWait wait;
-	SearchPage searchpage ;
-	
-	@BeforeMethod
-	public void setup() {
-		
-		driver= new ChromeDriver();
-		driver.manage().window().maximize();
-		searchpage = new SearchPage(driver);
-	}
-	
+
 	@Test
 	public void verifySearch() {
-		searchpage.openHomePage();		
-		searchpage.searchProduct("laptop");
+		SearchPage searchPage = new SearchPage(driver);
+		
+		searchPage.openHomePage();		
+		searchPage.searchProduct("laptop");
 		
 		
 		   Assert.assertTrue(

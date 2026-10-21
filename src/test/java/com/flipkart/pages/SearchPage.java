@@ -15,6 +15,12 @@ public class SearchPage {
 	
 	private By searchBox =  By.xpath("//form[@class='lilxh_ header-form-search']//input[@placeholder='Search for Products, Brands and More']");
 	
+	  //Constructor of SearchPage
+	   public SearchPage(WebDriver driver) {
+	        this.driver = driver;
+	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+	    }
+	
 	//product search Method
 	public void searchProduct(String product) {
 		
@@ -31,11 +37,7 @@ public class SearchPage {
 	        driver.get("https://www.flipkart.com/");
 	    }
 	
-	  //Constructor of SearchPage
-	   public SearchPage(WebDriver driver) {
-	        this.driver = driver;
-	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-	    }
+
 	   
 	    public String getCurrentUrl() {
 	        return driver.getCurrentUrl();

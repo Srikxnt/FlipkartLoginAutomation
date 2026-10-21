@@ -14,20 +14,12 @@ import org.testng.annotations.*;
 
 import com.flipkart.pages.LoginPage;
 
-public class Logintest {
+public class Logintest extends BaseTest {
 	
-	WebDriver driver;
-	LoginPage loginpage;
-	
-	@BeforeMethod
-	public void setup() {
-		driver= new ChromeDriver();
-		driver.manage().window().maximize();
-		loginpage= new LoginPage(driver);
-	}
 	
 	@Test
 	public void verifylogin() {
+		LoginPage loginpage = new LoginPage(driver);
 		
 		loginpage.loginpge();
 		String phonenumber="1234567890";
@@ -48,13 +40,5 @@ public class Logintest {
 
 		
 	}
-	@AfterMethod
-	
-	public void driverclose() {
-	loginpage.closeDriver();
-	}
-	
-	
-
 
 }
