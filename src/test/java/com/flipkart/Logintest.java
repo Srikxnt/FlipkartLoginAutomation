@@ -12,56 +12,48 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import com.flipkart.pages.LoginPage;
+
 public class Logintest {
 	
 	WebDriver driver;
+	LoginPage loginpage;
 	
 	@BeforeMethod
 	public void setup() {
 		driver= new ChromeDriver();
-		driver.manage().window().maximize();		
+		driver.manage().window().maximize();
+		loginpage= new LoginPage(driver);
 	}
 	
 	@Test
 	public void verifylogin() {
-		driver.get("https://www.flipkart.com/login?ret=/");
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		loginpage.loginpge();
+		String phonenumber="1234567890";
+		
+		loginpage.enterPhoneNumber(phonenumber);
+		
+		
 
-		
-		wait.until(ExpectedConditions.urlContains("https://www.flipkart.com/login?ret=/"));
-		
-
-		
-	WebElement phoneNumber=	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='jwCbxy']")));
-	phoneNumber.click();
-	phoneNumber.sendKeys("0000000000");
+	String actualPhone= loginpage.getPhoneNumber();	
 	
-	String phone=phoneNumber.getAttribute("value");
+	  Assert.assertTrue(
+              actualPhone.matches("\\d{10}"),
+              "Phone number must contain exactly 10 digits");
+	  	
 	
-	System.out.println("Phone field value: [" + phone + "]");
-	System.out.println("Phone field length: " + phone.length());
-//	int size=phone.length();	
-	
-	Assert.assertTrue(phone.matches("\\d{10}"));
-	
-	WebElement button =wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Continue']")));
-		
-	
-	Assert.assertTrue(button.isEnabled());
-	button.click();
-//	if(size==10) {
-//		System.out.println("phoneVerified");
-//	}
+	  loginpage.clickContinue();
 
 		
 	}
-	
 	@AfterMethod
-	public void closeDriver() {
-//		if(driver!=null) {
-//			driver.quit();
-//		}
+	
+	public void driverclose() {
+	loginpage.closeDriver();
 	}
+	
+	
+
 
 }
