@@ -34,14 +34,15 @@ public class LoginPage {
 		phone.sendKeys(phoneNumber);
 	}
 	
-	   public void clickContinue() {
-	        wait.until(
-	                ExpectedConditions.elementToBeClickable(continueButton))
-	                .click();
-	    }
+	//Bypassing OTP based Login
+//	   public void clickContinue() {
+//	        wait.until(
+//	                ExpectedConditions.elementToBeClickable(continueButton))
+//	                .click();
+//	    }
 
 	   public String getPhoneNumber() {
-			
+				
 		return wait.until(
                 ExpectedConditions.visibilityOfElementLocated(Phonenumber))
                 .getAttribute("value");

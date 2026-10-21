@@ -32,7 +32,7 @@ public class Logintest {
 		loginpage.loginpge();
 		String phonenumber="1234567890";
 		
-		loginpage.enterPhoneNumber(phonenumber);
+		loginpage.enterPhoneNumber(phonenumber); 
 		
 		
 
@@ -43,7 +43,8 @@ public class Logintest {
               "Phone number must contain exactly 10 digits");
 	  	
 	
-	  loginpage.clickContinue();
+	  //Bypassing the OTP based login
+//	  loginpage.clickContinue();
 
 		
 	}
